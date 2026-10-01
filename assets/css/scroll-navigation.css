@@ -360,6 +360,10 @@ body.project-modal-open { overflow: hidden !important; }
 
 /* Phones and narrow tablets use a true one-column layout, not a scaled desktop page. */
 @media (max-width: 767px) {
+  /* Use one content gutter throughout the phone layout. The earlier mix of
+     page and utility paddings made the hero and the Studio section start on
+     visibly different vertical lines. */
+  :root { --mobile-content-gutter: 32px; }
   /* Mobile controls share one quiet top bar, keeping them away from the page content. */
   #navbar-collapse-toggle { position: fixed; inset: 0 0 auto; z-index: 70; height: 76px; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(18,18,18,.96); box-shadow: 0 8px 22px rgba(0,0,0,.18); pointer-events: none; }
   #navbar-collapse-toggle .language-switcher, #navbar-collapse-toggle nav { pointer-events: auto; }
@@ -371,7 +375,7 @@ body.project-modal-open { overflow: hidden !important; }
   .language-switcher { position: absolute; top: 14px; right: 80px; z-index: 71; padding: 4px; }
   .language-switcher button { min-width: 43px; min-height: 40px; padding: 0 11px; font-size: 13px; }
   .home #menuToggle { position: absolute; top: 12px; right: 16px; z-index: 72; width: 52px; height: 52px; padding: 18px 0 0 14px; }
-  .js .page#home { min-height: 0; padding: 112px 25px 56px; }
+  .js .page#home { min-height: 0; padding: 112px var(--mobile-content-gutter) 56px; }
   #home > div.relative { justify-content: flex-start; }
   #home .mx-auto { max-width: none; margin-right: 0; margin-left: 0; }
   #home .hero-mobile-profile, #home .hero-mobile-projects { justify-content: flex-start; margin: 0 0 16px; }
@@ -387,7 +391,8 @@ body.project-modal-open { overflow: hidden !important; }
   .studio-intro__brand { padding: 25px; }
   .studio-services, .studio-team { margin-top: 58px; }
   /* The desktop title strips become light, compact section dividers on phones. */
-  .page > .w-full > div:first-child.xs\:bg-black-3 { padding: 50px 25px 27px; border-bottom: 0; background: transparent; }
+  .page > .w-full > div:first-child.xs\:bg-black-3 { padding: 50px var(--mobile-content-gutter) 27px; border-bottom: 0; background: transparent; }
+  .studio-layout { padding-right: var(--mobile-content-gutter) !important; padding-left: var(--mobile-content-gutter) !important; }
   .studio-service-grid, .privacy-policy-grid { grid-template-columns: 1fr; }
   .portfolio-showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .portfolio-showcase figcaption { padding: 24px 12px 11px; font-size: 13px; line-height: 1.25; }
@@ -400,7 +405,9 @@ body.project-modal-open { overflow: hidden !important; }
   .contact-form textarea { margin: 14px 0 24px; }
   .project-modal { padding: 15px; }
   .project-modal__dialog { display: block; width: 100%; max-height: calc(100vh - 100px); transform: none; }
-  .project-modal__content { padding: 38px 26px 44px; }
+  /* Reserve a real lane for the custom scrollbar. It is interactive, but it
+     must never sit on top of copy or gallery images. */
+  .project-modal__content { padding: 38px 50px 44px 26px; }
   .project-modal__intro { grid-template-columns: 112px minmax(0, 1fr); gap: 20px; min-height: 112px; }
   .project-modal__content h2 { font-size: 32px; }
   .project-modal__summary > p:last-child { font-size: 15px; }
@@ -435,8 +442,12 @@ body.project-modal-open { overflow: hidden !important; }
   .contact-form-row { grid-template-columns: 1fr; gap: 14px; }
   .contact-form textarea { margin: 14px 0 24px; }
   .project-modal { padding: 15px; }
-  .project-modal__content { padding: 34px 26px; }
-  .project-modal__intro { grid-template-columns: 92px minmax(0, 1fr); gap: 18px; }
+  .project-modal__content { padding: 34px 50px 40px 26px; }
+  /* A side-by-side avatar leaves too little room for a project title on a
+     phone. Stack it above the text so the title and action links use the
+     full safe content width. */
+  .project-modal__intro { grid-template-columns: 1fr; gap: 16px; min-height: 0; align-items: start; }
+  .project-modal__media { width: 96px; }
   .project-modal__gallery { column-count: 1; }
   .site-footer { padding: 48px 25px 18px; }
   .site-footer__inner { grid-template-columns: 1fr 1fr; gap: 34px 24px; }
