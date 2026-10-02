@@ -399,7 +399,7 @@ body.project-modal-open { overflow: hidden !important; }
   .portfolio-showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .portfolio-showcase figcaption { padding: 24px 12px 11px; font-size: 13px; line-height: 1.25; }
   .studio-service-grid article { min-height: 0; }
-  .team-member { grid-template-columns: 1fr; }
+  .team-member { grid-template-columns: 1fr; height: auto; min-height: 0; }
   .team-member__portrait { height: 240px; min-height: 0; max-height: none; }
   .team-member__content { padding: 30px 25px; }
   .team-member__content h4 { font-size: 26px; }
@@ -440,7 +440,7 @@ body.project-modal-open { overflow: hidden !important; }
   .studio-services, .studio-team { margin-top: 58px; }
   .studio-service-grid { grid-template-columns: 1fr; }
   .studio-service-grid article { min-height: 0; }
-  .team-member { grid-template-columns: 1fr; }
+  .team-member { grid-template-columns: 1fr; height: auto; min-height: 0; }
   .team-member__portrait { height: 240px; min-height: 0; max-height: none; }
   .team-member__content { padding: 30px 25px; }
   .team-member__content h4 { font-size: 26px; }
